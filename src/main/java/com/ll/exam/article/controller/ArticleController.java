@@ -1,5 +1,6 @@
 package com.ll.exam.article.controller;
 
+import com.ll.exam.annotation.Autowired;
 import com.ll.exam.annotation.Controller;
 import com.ll.exam.annotation.GetMapping;
 import com.ll.exam.article.service.ArticleService;
@@ -10,6 +11,7 @@ import com.ll.exam.article.service.ArticleService;
 @Controller
 // 아래 ArticleController 클래스는 Controller 이다.
 public class ArticleController {
+    @Autowired
     private ArticleService articleService;
 
     // GetMapping은 /usr/article/list/free 와 같이 관련된 요청을 처리하는 함수이다.

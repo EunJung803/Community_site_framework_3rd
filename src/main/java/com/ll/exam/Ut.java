@@ -17,7 +17,7 @@ public class Ut {
                 return defaultValue;
             }
         }
-    };
+    }
 
     public static class str {
 
