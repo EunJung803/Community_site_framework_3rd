@@ -75,6 +75,7 @@ public class AppTest {
         assertThat(articleService2).isEqualTo(articleService1);
     }
 
+    // 객체 생성시 의존성 자동 해결 테스트 케이스 추가
     @Test
     public void articleController를_생성할때_articleService도_같이_생성() {
         ArticleController articleController = Container.getObj(ArticleController.class);
