@@ -24,14 +24,20 @@ public class ArticleController {
 
     @GetMapping("/usr/article/detail/{boardCode}")
     public void showDetail(Rq rq) {
-        rq.println("게시물 상세페이지");
+        rq.println("게시물 상세 페이지<br>");
+
+        long id = rq.getLongPathValueByIndex(1, -1);
+
+        rq.println("%d번 게시물".formatted(id));
     }
 
     @GetMapping("/usr/article/modify/{boardCode}/{id}")
     public void showModify(Rq rq) {
-        rq.println("게시물 수정페이지");
+        rq.println("게시물 수정 페이지<br>");
 
         long id = rq.getLongPathValueByIndex(1, -1);
         // long id = rq.getLongParam("id"); -> 곧 기능 구현 (uri 맨 뒤에 있는 id 정보로 얻어올 수 있음)
+
+        rq.println("%d번 게시물".formatted(id));
     }
 }

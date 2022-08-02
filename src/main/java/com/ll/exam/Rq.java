@@ -1,10 +1,10 @@
 package com.ll.exam;
 
-import util.Ut;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import util.Ut;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -105,7 +105,7 @@ public class Rq {
     public String getRouteMethod() {
         String method = getParam("_method", "");
 
-        if (method.length() > 0 ) {
+        if (method.length() > 0) {
             return method.toUpperCase();
         }
 
