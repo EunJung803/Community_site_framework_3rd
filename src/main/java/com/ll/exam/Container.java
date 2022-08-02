@@ -19,6 +19,7 @@ public class Container {
 
     private static void scanComponents() {
         // 전체 레고 생성
+        scanRepositories();
         scanServices();
         scanControllers();
 
