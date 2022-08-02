@@ -18,4 +18,8 @@ public class ArticleController {
     public void showList() {
 
     }
+
+    public ArticleService getArticleServiceForTest() {
+        return articleService;
+    }
 }
