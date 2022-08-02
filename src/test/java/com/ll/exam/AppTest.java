@@ -1,11 +1,13 @@
 package com.ll.exam;
 
 import com.ll.exam.article.controller.ArticleController;
+import com.ll.exam.article.repository.ArticleRepository;
 import com.ll.exam.article.service.ArticleService;
 import com.ll.exam.home.controller.HomeController;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -96,6 +98,13 @@ public class AppTest {
 
     @Test
     public void ControllerManager__scanMappings() {
-        class cls = ControllerManager
+        ControllerManager.init(); // 클래스를 강제로 로딩되게 하려는 목적
+    }
+
+    @Test
+    public void ControllerManager__라우트정보_개수() {
+        Map<String, RouteInfo> routeInfos = ControllerManager.getRouteInfosForTest();
+
+        assertThat(routeInfos.size()).isEqualTo(2);
     }
 }
