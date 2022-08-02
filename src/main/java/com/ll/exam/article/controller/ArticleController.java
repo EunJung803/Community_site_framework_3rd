@@ -2,6 +2,7 @@ package com.ll.exam.article.controller;
 
 import com.ll.exam.annotation.Controller;
 import com.ll.exam.annotation.GetMapping;
+import com.ll.exam.article.service.ArticleService;
 
 // ArticleController 가 컨트롤러 이다.
 // 라고 부가설명 해주는 것 (이렇게 골뱅이로 알려주는게 == 어노테이션)
@@ -9,6 +10,7 @@ import com.ll.exam.annotation.GetMapping;
 @Controller
 // 아래 ArticleController 클래스는 Controller 이다.
 public class ArticleController {
+    private ArticleService articleService;
 
     // GetMapping은 /usr/article/list/free 와 같이 관련된 요청을 처리하는 함수이다.
     @GetMapping("/usr/article/list")

@@ -1,6 +1,7 @@
 package com.ll.exam;
 
 import com.ll.exam.annotation.Controller;
+import com.ll.exam.annotation.Service;
 import com.ll.exam.article.controller.ArticleController;
 import com.ll.exam.home.controller.HomeController;
 import org.reflections.Reflections;
@@ -17,16 +18,30 @@ public class Container {
     static {
         objects = new HashMap<>();
 
+        scanComponents();
+    }
+
+    private static void scanComponents() {
+        scanServices();
+        scanControllers();
+    }
+
+    private static void scanServices() {
+        Reflections ref = new Reflections("com.ll.exam");
+        for (Class<?> cls : ref.getTypesAnnotatedWith(Service.class)) {
+            objects.put(cls, Ut.cls.newObj(cls, null));
+        }
+    }
+
+    private static void scanControllers() {
         Reflections ref = new Reflections("com.ll.exam");
         for (Class<?> cls : ref.getTypesAnnotatedWith(Controller.class)) {
             objects.put(cls, Ut.cls.newObj(cls, null));
         }
     }
-
-    public static Object getObj(Class cls) {
-        return objects.get(cls);
+    public static <T> T getObj(Class<T> cls) {
+        return (T)objects.get(cls);
     }
-
     public static List<String> getControllerNames() {
         List<String> names = new ArrayList<>();
 
@@ -36,7 +51,6 @@ public class Container {
             String clsSimpleName = cls.getSimpleName(); // HomeController
             clsSimpleName = clsSimpleName.replace("Controller", ""); // Home
             clsSimpleName = Ut.str.decapitalize(clsSimpleName); // home
-
             names.add(clsSimpleName.replace("Controller", clsSimpleName));
         }
 
