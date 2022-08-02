@@ -39,17 +39,19 @@ public class Container {
     private static void resolveDependencies(Object o) {
         Arrays.asList(o.getClass().getDeclaredFields())
                 .stream()
-                .filter(f -> f.isAnnotationPresent(Autowired.class))
+                .filter(f -> f.isAnnotationPresent(Autowired.class))    // Autowired 붙은 것만 필터링
                 .map(field -> {
                     field.setAccessible(true);
                     return field;
                 })
                 .forEach(field -> {
                     Class cls = field.getType();
-                    Object dependency = objects.get(cls);
+                    Object dependency = objects.get(cls);   // 필드의 타입을 dependency에 저장
 
                     try {
                         field.set(o, dependency);
+                        // o.필드명 = dependency;
+                        // 위와 같은 표현이다. (o 객체 안에 있는 필드에 dependency 값을 넣는다)
                     } catch (IllegalAccessException e) {
 
                     }
