@@ -80,8 +80,22 @@ public class AppTest {
     public void articleController를_생성할때_articleService도_같이_생성() {
         ArticleController articleController = Container.getObj(ArticleController.class);
 
-        ArticleService articleService = articleController.getArticleServiceForTest();
+        ArticleService articleService = Ut.reflection.getFieldValue(articleController, "articleService", null);
 
         assertThat(articleService).isNotNull();
+    }
+
+    @Test
+    public void articleService를_생성할때_articleRepository도_같이_생성() {
+        ArticleService articleService = Container.getObj(ArticleService.class);
+
+        ArticleRepository articleRepository = Ut.reflection.getFieldValue(articleService, "articleRepository", null);
+
+        assertThat(articleRepository).isNotNull();
+    }
+
+    @Test
+    public void ControllerManager__scanMappings() {
+        class cls = ControllerManager
     }
 }

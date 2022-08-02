@@ -54,15 +54,22 @@ public class Container {
                 });
     }
 
+    private static void scanRepositories() {
+        Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
+        for (Class<?> cls : ref.getTypesAnnotatedWith(Repository.class)) {
+            objects.put(cls, Ut.cls.newObj(cls, null));
+        }
+    }
+
     private static void scanServices() {
-        Reflections ref = new Reflections("com.ll.exam");
+        Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
         for (Class<?> cls : ref.getTypesAnnotatedWith(Service.class)) {
             objects.put(cls, Ut.cls.newObj(cls, null));
         }
     }
 
     private static void scanControllers() {
-        Reflections ref = new Reflections("com.ll.exam");
+        Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
         for (Class<?> cls : ref.getTypesAnnotatedWith(Controller.class)) {
             objects.put(cls, Ut.cls.newObj(cls, null));
         }
