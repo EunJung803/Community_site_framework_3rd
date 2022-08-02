@@ -9,9 +9,11 @@ import java.util.List;
 
 public class Container {
     private static final ArticleController articleController;
+    private static final HomeController homeController;
 
     static {
         articleController = new ArticleController();
+        homeController = new HomeController();
     }
 
     public static ArticleController getArticleController() {
@@ -32,5 +34,9 @@ public class Container {
         }
 
         return names;
+    }
+
+    public static HomeController getHomeController() {
+        return homeController;
     }
 }

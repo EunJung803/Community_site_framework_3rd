@@ -36,4 +36,19 @@ public class AppTest {
         assertThat(names).contains("home");
         assertThat(names).contains("article");
     }
+
+    @Test
+    public void ioc__homeController() {
+        HomeController homeController = Container.getHomeController();
+
+        assertThat(homeController).isNotNull();
+    }
+
+    @Test
+    public void ioc__homeController__싱글톤() {
+        HomeController homeController1 = Container.getHomeController();
+        HomeController homeController2 = Container.getHomeController();
+
+        assertThat(homeController2).isEqualTo(homeController1);
+    }
 }
