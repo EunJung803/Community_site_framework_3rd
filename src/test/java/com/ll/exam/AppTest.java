@@ -1,6 +1,7 @@
 package com.ll.exam;
 
 import com.ll.exam.article.controller.ArticleController;
+import com.ll.exam.home.controller.HomeController;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
