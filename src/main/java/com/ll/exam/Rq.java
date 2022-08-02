@@ -1,6 +1,6 @@
 package com.ll.exam;
 
-import com.ll.exam.util.Ut;
+import util.Ut;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -2,11 +2,12 @@ package com.ll.exam;
 
 import com.ll.exam.annotation.Controller;
 import com.ll.exam.annotation.GetMapping;
-import com.ll.exam.util.Ut;
+import util.Ut;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.reflections.Reflections;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,8 +23,8 @@ public class ControllerManager {
 
     private static void scanMappings() {
         Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
-        for (Class<?> cl : ref.getTypesAnnotatedWith(Controller.class)) {
-            Method[] methods = cl.getDeclaredMethods();
+        for (Class<?> controllerCls : ref.getTypesAnnotatedWith(Controller.class)) {
+            Method[] methods = controllerCls.getDeclaredMethods();
 
             for (Method method : methods) {
                 GetMapping getMapping = method.getAnnotation(GetMapping.class);
@@ -41,7 +42,7 @@ public class ControllerManager {
 
                     String key = httpMethod + "___" + actionPath;
 
-                    routeInfos.put(key, new RouteInfo(path, actionPath, method));
+                    routeInfos.put(key, new RouteInfo(path, actionPath, controllerCls, method));
                 }
             }
         }
@@ -65,7 +66,24 @@ public class ControllerManager {
             return;
         }
 
-        rq.println("해당 요청은 존재합니다.");
+        runAction(rq, routeInfos.get(mappingKey));
+    }
+
+    // 진짜 실행
+    private static void runAction(Rq rq, RouteInfo routeInfo) {
+        Class controllerCls = routeInfo.getControllerCls();     // 컨트롤러 클래스 얻기
+        Method actionMethod = routeInfo.getMethod();            // 메서드 얻기
+
+        Object controllerObj = Container.getObj(controllerCls);     // 호출하기 위해서는 컨테이너에게 컨트롤러 클래스를 달라고 요청하기
+        // 이를 컨트롤러 객체에 저장
+
+        try {
+            actionMethod.invoke(controllerObj, rq);     // 액션 메서드 실행
+        } catch (IllegalAccessException e) {
+            rq.println("액션시작에 실패하였습니다.");
+        } catch (InvocationTargetException e) {
+            rq.println("액션시작에 실패하였습니다.");
+        }
     }
 
     public static void init() {

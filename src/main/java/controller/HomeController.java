@@ -1,4 +1,4 @@
-package com.ll.exam.home.controller;
+package controller;
 
 import com.ll.exam.annotation.Controller;
 
