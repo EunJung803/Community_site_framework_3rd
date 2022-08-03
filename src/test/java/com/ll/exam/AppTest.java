@@ -101,10 +101,10 @@ public class AppTest {
         ControllerManager.init(); // 클래스를 강제로 로딩되게 하려는 목적
     }
 
-    @Test
-    public void ControllerManager__라우트정보_개수() {
-        Map<String, RouteInfo> routeInfos = ControllerManager.getRouteInfosForTest();
-
-        assertThat(routeInfos.size()).isEqualTo(2);
-    }
+//    @Test
+//    public void ControllerManager__라우트정보_개수() {
+//        Map<String, RouteInfo> routeInfos = ControllerManager.getRouteInfosForTest();
+//
+//        assertThat(routeInfos.size()).isEqualTo(2);
+//    }
 }
