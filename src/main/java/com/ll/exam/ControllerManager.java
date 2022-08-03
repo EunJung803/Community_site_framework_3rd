@@ -66,11 +66,16 @@ public class ControllerManager {
             return;
         }
 
-        runAction(rq, routeInfos.get(mappingKey));
+//        runAction(rq, routeInfos.get(mappingKey));
+        RouteInfo routeInfo = routeInfos.get(mappingKey);
+        rq.setRouteInfo(routeInfo);
+
+        runAction(rq);
     }
 
     // 진짜 실행
-    private static void runAction(Rq rq, RouteInfo routeInfo) {
+    private static void runAction(Rq rq) {
+        RouteInfo routeInfo = rq.getRouteInfo();
         Class controllerCls = routeInfo.getControllerCls();     // 컨트롤러 클래스 얻기
         Method actionMethod = routeInfo.getMethod();            // 메서드 얻기
 
