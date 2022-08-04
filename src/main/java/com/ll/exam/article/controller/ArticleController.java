@@ -4,7 +4,10 @@ import com.ll.exam.Rq;
 import com.ll.exam.annotation.Autowired;
 import com.ll.exam.annotation.Controller;
 import com.ll.exam.annotation.GetMapping;
+import com.ll.exam.article.dto.ArticleDto;
 import com.ll.exam.article.service.ArticleService;
+
+import java.util.List;
 
 // ArticleController 가 컨트롤러 이다.
 // 라고 부가설명 해주는 것 (이렇게 골뱅이로 알려주는게 == 어노테이션)
@@ -19,7 +22,10 @@ public class ArticleController {
     @GetMapping("/usr/article/list/{boardCode}")
     // 아래 showList 는 Get - /usr/article/list 으로 요청이 왔을 때 실행 되어야 하는 함수이다.
     public void showList(Rq rq) {
-        rq.println("게시물 리스트");
+        List<ArticleDto> articleDtos = articleService.getArticles();
+
+        rq.setAttr("articles", articleDtos);
+        rq.view("usr/article/list");
     }
 
     @GetMapping("/usr/article/detail/{boardCode}")
