@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MyMapTest {

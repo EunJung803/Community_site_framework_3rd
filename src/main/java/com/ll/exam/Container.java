@@ -4,8 +4,8 @@ import com.ll.exam.annotation.Autowired;
 import com.ll.exam.annotation.Controller;
 import com.ll.exam.annotation.Repository;
 import com.ll.exam.annotation.Service;
-import util.Ut;
 import org.reflections.Reflections;
+import util.Ut;
 
 import java.util.*;
 

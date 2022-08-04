@@ -2,9 +2,9 @@ package com.ll.exam.article.controller;
 
 import com.ll.exam.Rq;
 import com.ll.exam.annotation.Autowired;
-import com.ll.exam.article.service.ArticleService;
 import com.ll.exam.annotation.Controller;
 import com.ll.exam.annotation.GetMapping;
+import com.ll.exam.article.service.ArticleService;
 
 // ArticleController 가 컨트롤러 이다.
 // 라고 부가설명 해주는 것 (이렇게 골뱅이로 알려주는게 == 어노테이션)
